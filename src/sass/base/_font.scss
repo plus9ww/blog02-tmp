@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* Sass Document */
+
+/*@import url(//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,500);*/
+
+@mixin fontStyle{
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+	/* font-family:Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif; */
+}
+
+/*
+@mixin ryu-m{
+	font-family: "リュウミン M-KL", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+	@include rotate(0.001deg);
+}
+
+@mixin ryu-r{
+	font-family: "リュウミン R-KL", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+	@include rotate(0.001deg);
+}
+
+@mixin font-tel{ font-family: 'Amiri', serif; }*/
+
+a:link    { color:$mlc; text-decoration: none; }
+a:visited { color:$mlc; text-decoration: none; }
+a:active  { color:$mlc; text-decoration: none; }
+a:hover   { color: $mhc; text-decoration: none; }
+
+.fWhite			{ color: #FFFFFF; }
+.fRed			{ color: #8C0000; }
+.fLightGreen	{ color: #C2E6D3; }
+.fBrown			{ color: #663300; }
+.fBlue			{ color: #00A0E9; }
+.fBlack			{ color: #333; }
+.fGreen			{ color: #59B200; }
+.fPink			{ color: #EB697C; }
+.fGray			{ color: #BBB; }
+
+/* 文字可変指定 */
+@mixin font-size($maxfontsize, $maxviewportsize: $max_viewport, $minviewportsize: $min_viewport ){
+	
+	$minfontsize : 12;
+	
+	/* 最大フォントサイズの1/2が12より大きい場合 */
+	@if $maxfontsize / 2 > 12 {
+		$minfontsize : $maxfontsize / 2;
+	}
+	
+	@media (min-width: $minviewportsize * 1px) {
+		$XX: $minviewportsize / 100 * 1px;
+		$YY: 100 * ($maxfontsize - $minfontsize) / ($maxviewportsize - $minviewportsize);
+		$ZZ: ($minfontsize / 16) * 1rem;
+		font-size: calc(#{$ZZ} + ((1vw - #{$XX}) * #{$YY}));
+		/*font-size: calc((( #{$minfontsize} / 16) * 1rem) + ((1vw - ( #{$minviewportsize} / 100 * 1px)) * (100 * ( #{$maxfontsize} -  #{$minfontsize} ) / ( #{$maxviewportsize} -  #{$minviewportsize} ))));
+		Where: * 1.8182 = 100 * font_Size_Difference / viewport_Width_Difference */
+	}
+
+	@media (min-width: $maxviewportsize * 1px) {
+		font-size: $maxfontsize *1px;
+	}
+}
+/* /文字可変指定 */
+
+body {
+	@include fontStyle;
+	line-height: $mlh;
+	letter-spacing: $mls;
+	@include font-size(16);
+	color: $mfc;
+}
+
+.f30 { @include font-size(30); }
+.f28 { @include font-size(28); }
+.f26 { @include font-size(26); }
+.f24 { @include font-size(24); }
+.f22 { @include font-size(22); }
+.f20 { @include font-size(20); }
+.f18 { @include font-size(18); }
+.f16 { @include font-size(16); }
+.f15 { @include font-size(15); }
+.f14 { @include font-size(14); }
+.f13 { @include font-size(13); }
+.f12 { @include font-size(12); }
+.f11 { @include font-size(11); }
+.f10 { @include font-size(10); }
+
+.h200 {line-height: 2.0}
+.h180 {line-height: 1.8}
+.h175 {line-height: 1.75}
+.h160 {line-height: 1.6}
+.h140 {line-height: 1.4}
+.h120 {line-height: 1.2}

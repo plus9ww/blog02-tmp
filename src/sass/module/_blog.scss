@@ -1,0 +1,183 @@
+@charset "utf-8";
+/* Sass Document */
+
+$iconColor: $mfc; /* アイコンカラー */
+
+
+@mixin icon-font{
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.blogStyleBase{
+	
+	h2{
+		margin: 0 0 35px;
+		padding: 5px 0 5px 20px;
+		border-left: 3px solid #000000;
+		color: #000000;
+		font-size: 24px;
+		line-height: 1.4;
+	}
+	
+	h3{
+		margin: 0 0 15px;
+		font-size: 18px;
+		line-height: 1.4;
+	}
+	
+	h4{
+		margin: 0 0 15px;
+		font-size: 16px;
+		line-height: 1.4;
+	}
+	
+	p {
+		margin: 0 0 20px;
+	}
+	
+	ul{
+		margin: 0 0 20px;
+		padding: 0 0 0 30px;
+		
+		li{
+			list-style: disc;
+		}
+	}
+	
+	ol{
+		margin: 0 0 20px;
+		padding: 0 0 0 32px;
+		
+		li{
+			list-style: decimal;
+		}
+	}
+	
+	.box{
+		margin: 0 0 20px;
+		padding: 15px 15px 5px;
+		border: 2px solid #EEE;
+		background: #FEFEFE;
+		@include border-radius(5px);
+		
+		p{
+			margin: 0 0 10px;
+			font-size: 14px;
+		}
+		
+		&.red{
+			background: #FFFDFD;
+			border: 2px solid #FFECEC;
+		}
+	}
+	
+	p.box{
+		padding: 15px;
+	}
+	
+	blockquote{
+		position: relative;
+		margin: 0 0 20px;
+		padding: 30px 20px 20px;
+		border: none;
+		border: 2px solid #EEE;
+		background: #FEFEFE;
+		@include border-radius(5px);
+		
+		&:before,
+		&:after{
+			@include icon-font;
+			position: absolute;
+			color: #DDD;
+		}
+		&:before{
+			top: 10px;
+			left: 10px;
+			content: "\e977";
+		}
+		&:after{
+			bottom: 10px;
+			right: 10px;
+			content: "\e978";
+		}
+		
+		h3:first-child{
+			margin-top: 0;
+		}
+		
+		p{
+			margin: 0 0 10px;
+			font-size: 14px;
+		}
+	}
+	
+	.link-Blank{
+		position: relative;
+		display: inline-block;
+		padding: 0 0 0 20px;
+		vertical-align: middle;
+			
+		&:before{
+			@include icon-font;
+			position: absolute;
+			top: 50%;
+			left: 0;
+			display: block;
+			margin: -7px 8px 0 0;
+			vertical-align: middle;
+			font-size: 14px;
+			color: #999;
+			content: "\e9cb";
+		}
+		
+		&:hover {
+			text-decoration: none;
+		}
+	}
+	
+	table{
+		margin: 0 0 20px;
+		width: 100%;
+		border: 1px solid #EEEEEE;
+		background: #FFFFFF;
+		border-collapse: collapse;
+		
+		th{
+			padding: 1em;
+			background: #EEEEEE;
+			border-bottom: 1px solid #FFFFFF;
+			font-weight: bold;
+			text-align: left;
+			line-height: 1.75;
+			vertical-align: middle;
+		}
+		
+		td{
+			padding: 1em;
+			border: 1px solid #EEEEEE;
+			font-size: 14px;
+			line-height: 1.75;
+			vertical-align: middle;
+		}
+		
+		.w10{ width: 10%; }
+		.w20{ width: 20%; }
+		.w30{ width: 30%; }
+		.w40{ width: 40%; }
+		.w50{ width: 50%; }
+		.w60{ width: 60%; }
+		.w70{ width: 70%; }
+		.w80{ width: 80%; }
+		.w90{ width: 90%; }
+	}
+}

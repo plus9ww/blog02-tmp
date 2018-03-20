@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* Sass Document */
+
+@import "compass";
+
+@mixin ani($property...){
+	@include transition-property($property);
+	@include transition-duration(0.2s);
+	@include transition-timing-function(ease-in);
+}
+
+@mixin bs($size, $a) {
+	$size : $size - 7px;
+	@include box-shadow( 0px -7px 0px $size rgba(0,0,0,$a) inset);
+}
+
+@mixin writing-mode($direction){
+	-ms-writing-mode: tb- + $direction;            		/* IE用　*/
+	-webkit-writing-mode: vertical- + $direction;  		/* chrome用　*/
+	-moz-writing-mode: vertical- + $direction;       	/* Firefox用　*/
+	-o-writing-mode: vertical- + $direction;       		/* opera用　*/
+	writing-mode: vertical- + $direction;				/* その他 */
+}
+
+@mixin doc{
+	/*フレキシブルボックス 中央配置*/
+	@include display-flex();
+	@include align-items(center); 
+	@include justify-content(center); 
+	@include justify-content(space-between);
+	/*角丸*/
+	@include border-radius(5px);
+	/*ボックス影*/
+	@include box-shadow(0px -7px 0px -2px #C5C5C5 inset);
+	/*透明度*/
+	@include opacity(0.6);
+	/*回転*/
+	@include rotate(45deg);
+	
+	width: percentage(580/1200);
+}
+
+@mixin lastmargin {
+	& > *:last-child,
+	& > *:last-child > *:last-child,
+	& > *:last-child > *:last-child > *:last-child {
+	  margin-bottom: 0;
+	}
+}

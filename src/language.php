@@ -1,0 +1,1 @@
+<ul><li><a href="<?= home_url(); ?>/en/" target="_blank">English</a></li><li><a href="<?= home_url(); ?>/zh/" target="_blank">簡体中文</a></li><li><a href="<?= home_url(); ?>/tw/">繁体中文</a></li><li><a href="<?= home_url(); ?>">日本語</a></li></ul>

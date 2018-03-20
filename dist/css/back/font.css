@@ -1,0 +1,134 @@
+@charset "utf-8";
+
+html {
+	font-size: 14px;
+}
+
+body {
+	color: #333333;
+	xfont-family: "ヒラギノ明朝 ProN W3", "HiraMinProN-W3", "HG明朝E", "ＭＳ Ｐ明朝", "MS PMincho", "MS 明朝", serif;
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+}
+
+.f86 {font-size: 86px;}
+.f46 {font-size: 46px;}
+.f42 {font-size: 42px;}
+.f40 {font-size: 40px;}
+
+.f30h180,
+.f30h160,
+.f30h140,
+.f30 {font-size: 30px;}
+
+.f26h180,
+.f26h160,
+.f26h140,
+.f26 {font-size: 26px; font-size: 1.714285714rem;}
+
+.f24h180,
+.f24h160,
+.f24h140,
+.f24 {font-size: 24px; font-size: 1.714285714rem;}
+
+.f22h180,
+.f22h160,
+.f22h140,
+.f22 {font-size: 22px; font-size: 1.571428571rem;}
+
+.f20h180,
+.f20h160,
+.f20h140,
+.f20 {font-size: 20px; font-size: 1.428571429rem;}
+
+.f18h180,
+.f18h160,
+.f18h140,
+.f18 {font-size: 18px; font-size: 1.285714286rem;}
+
+.f16h180,
+.f16h160,
+.f16h140,
+.f16 {font-size: 16px; font-size: 1.142857143rem;}
+
+.f14h180,
+.f14h160,
+.f14h140,
+.f14 {font-size: 14px; font-size: 1rem;}
+
+.f12h180,
+.f12h160,
+.f12h140,
+.f12 {font-size: 12px; font-size: 0.857142857rem;}
+
+.f10h180,
+.f10h160,
+.f10h140,
+.f10 {font-size: 10px; font-size: 0.714285714rem;}
+
+.f30h180,
+.f26h180,
+.f24h180,
+.f20h180,
+.f18h180,
+.f16h180,
+.f14h180,
+.f12h180,
+.f10h180 {line-height: 1.8}
+
+.f30h160,
+.f26h160,
+.f24h160,
+.f20h160,
+.f18h160,
+.f16h160,
+.f14h160,
+.f12h160,
+.f10h160 {line-height: 1.6}
+
+.f30h140,
+.f26h140,
+.f24h140,
+.f20h140,
+.f18h140,
+.f16h140,
+.f14h140,
+.f12h140,
+.f10h140 {line-height: 1.4}
+
+a:link    { text-decoration: none;}
+a:visited { text-decoration: none;}
+a:active  { text-decoration: none;}
+a:hover   { text-decoration: underline;color: #816806;}
+
+
+.fWhite {
+	color: #FFFFFF;
+}
+
+.fRed {
+	color: #CC0000;
+}
+
+.fLightGreen {
+	color: #C2E6D3;
+}
+
+.fBrown {
+	color: #663300;
+}
+
+.fBlue {
+	color: #00A0E9;
+}
+
+.fBlack {
+	color: #333;
+}
+
+.fGreen {
+	color: #59B200;
+}
+
+.fPink {
+	color: #EB697C;
+}

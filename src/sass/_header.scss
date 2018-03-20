@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* Sass Document */
+
+/**************************
+** ヘッダー
+*/
+
+header {
+	margin: 0 0 20px;
+	padding: 0 20px;
+	background: #0FBA8F;
+}
+
+.header {
+	margin: 0 auto;
+	padding: 10px 0;
+	width: 980px;
+	
+	&__h1 {
+		color: #fff;
+	}
+}

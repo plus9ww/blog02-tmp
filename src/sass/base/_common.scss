@@ -1,0 +1,137 @@
+@charset "utf-8";
+/* Sass Document */
+
+a {	
+	@include ani('background,color,top,left,right,bottom');
+	
+	img{
+		@include ani('opacity');
+	}
+	
+	&:hover,
+	&:active {
+		text-decoration: underline;
+	}
+	
+	&:hover img ,
+	&:active img {
+		@include opacity(0.6);
+	}
+}
+
+img {
+	vertical-align: bottom;
+	border: none;
+	max-width: 100%;
+	height: auto;
+	width /****/:auto; /*IE8*/
+}
+
+ul {
+	li {
+		list-style-type: none;
+		display: inline-block;
+	}
+}
+
+.disc li {
+	display: block;
+	margin: 0 0 0 30px;
+	padding: 0 10px;
+	list-style-type: disc !important;
+}
+.decimal li {
+	display: block;
+	margin: 0 0 0 30px;
+	padding: 0 10px;
+	list-style-type: decimal !important;
+}
+.clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+.clearfix {display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block }
+/* End hide from IE-mac */
+
+.textCenter {
+	text-align: center !important;
+}
+
+.textRight {
+	text-align: right !important;
+}
+
+.textLeft {
+	text-align: left !important;
+}
+
+.imgLeft {
+	float: left;
+	margin: 0 20px 20px 0;
+}
+
+.imgRight {
+	float: right;
+	margin: 0 0 20px 20px;
+}
+
+.left,
+.left1,
+.left2,
+.left3,
+.left4,
+.left5 {
+	float: left;
+}
+
+.right,
+.right1,
+.right2,
+.right3,
+.right4,
+.right5 {
+	float: right;
+}
+
+.box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8, .box9, .box10 {
+	clear: both;
+}
+
+.space-1 {
+	display: inline-block;
+	margin: 0 1em 0 0;
+}
+
+.marginB5  { margin-bottom: 5px !important; }
+.marginB10 { margin-bottom: 10px !important; }
+.marginB15 { margin-bottom: 15px !important; }
+.marginB20 { margin-bottom: 20px !important; }
+.marginB25 { margin-bottom: 25px !important; }
+.marginB30 { margin-bottom: 30px !important; }
+.marginB40 { margin-bottom: 40px !important; }
+.marginB50 { margin-bottom: 50px !important; }
+.marginB60 { margin-bottom: 60px !important; }
+.marginB70 { margin-bottom: 70px !important; }
+.marginB80 { margin-bottom: 80px !important; }
+
+@media screen and (max-width: 768px) {
+	.marginB5  { margin-bottom: 0 !important; }
+	.marginB10 { margin-bottom: 5px !important; }
+	.marginB15 { margin-bottom: 7px !important; }
+	.marginB20 { margin-bottom: 10px !important; }
+	.marginB25 { margin-bottom: 12px !important; }
+	.marginB30 { margin-bottom: 15px !important; }
+	.marginB40 { margin-bottom: 20px !important; }
+	.marginB50 { margin-bottom: 22px !important; }
+	.marginB60 { margin-bottom: 30px !important; }
+	.marginB70 { margin-bottom: 32px !important; }
+	.marginB80 { margin-bottom: 40px !important; }
+}

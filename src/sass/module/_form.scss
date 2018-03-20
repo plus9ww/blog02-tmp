@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* Sass Document */
+
+@mixin textBoxStyle1{
+	margin: 0 0 10px;
+	padding: 16px 16px;
+	width: 100%;
+	color: $mfc;
+	font-size: $mfs + px;
+	border: 1px solid #CCCCCC;
+	background: #F9F9F9;
+	@include fontStyle;
+	@include box-shadow( 0px 3px 2px -3px rgba(0,0,0,0.1) inset);
+	@include ani('box-shadow,border');
+	@include box-sizing(border-box);
+	
+	&:focus {
+	  border: 1px solid #BCDCF5;
+	  @include box-shadow( 0px 3px 2px -3px rgba(0,0,0,0.1) inset, 0 0 5px 0 rgba(102,175,233,0.4));
+	}
+	
+	@include input-placeholder {
+		color: #777;
+		@include font-size(16);
+		letter-spacing: 0.2em;
+	}
+}
+
+@mixin selectStyle1{
+	margin: 0 0 10px;
+	padding: 16px 16px;
+	width: 100%;
+	color: $mfc;
+	font-size: $mfs + px;
+	line-height: 1;
+	border: 1px solid #CCCCCC;
+	background: #F9F9F9;
+	@include fontStyle;
+	@include box-shadow( 0px 3px 2px -3px rgba(0,0,0,0.1) inset);
+	@include ani('box-shadow,border');
+	
+	&:focus {
+	  border: 1px solid #BCDCF5;
+	  @include box-shadow( 0px 3px 2px -3px rgba(0,0,0,0.1) inset, 0 0 5px 0 rgba(102,175,233,0.4));
+	}
+}
+
+@mixin submitBtStyle{
+}
+
+@mixin formBtStyle1{
+}
+
+.formStyleBase{
+
+	input[type="text"], input[type="email"], input[type="tel"], input[type="number"]{
+		@include textBoxStyle1;
+	}
+	
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+	input[type="number"] {
+		-moz-appearance:textfield;
+	}
+	
+	textarea{
+		@include textBoxStyle1;
+	}
+	
+	select{
+		@include selectStyle1;
+	}
+	
+	.btn-success{
+		display: block;
+		margin: 0 auto;
+		padding: 6px 12px;
+		text-align: center;
+		border: 1px solid #89B700;
+		background: #9BCE00;
+		font-weight: bold;
+		color: #FFFFFF;
+		cursor: pointer;
+		font-size: 16px;
+		letter-spacing: 0.1em;
+		line-height: 1.42857;
+		text-align: center;
+		vertical-align: middle;
+	}
+}
