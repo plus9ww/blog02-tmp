@@ -1,56 +1,58 @@
 @charset "utf-8";
 /* Sass Document */
 
-$iconColor: $mfc; /* アイコンカラー */
-
-
-@mixin icon-font{
-	font-family: 'icomoon';
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.blogStyleBase{
+/**************************
+** blogBox
+*/
+.blogBox{
 	
-	h2{
+	> h2{
 		margin: 0 0 35px;
+		padding: 15px 5px;
+		border-top: 3px solid #0FBA8F;
+		border-bottom: 1px solid #DDD;
+		color: #333;
+		@include font-size(24);
+		line-height: 1.4;
+	}
+	
+	> h3{
+		margin: 0 0 25px;
 		padding: 5px 0 5px 20px;
-		border-left: 3px solid #000000;
-		color: #000000;
-		font-size: 24px;
+		border-left: 3px solid #0FBA8F;
+		color: #333;
+		@include font-size(22);
 		line-height: 1.4;
 	}
 	
-	h3{
+	> h4{
 		margin: 0 0 15px;
-		font-size: 18px;
+		padding: 10px 15px;
+		@include font-size(16);
 		line-height: 1.4;
+		background: #EEE;
 	}
 	
-	h4{
-		margin: 0 0 15px;
-		font-size: 16px;
-		line-height: 1.4;
-	}
-	
-	p {
-		margin: 0 0 20px;
+	> p {
+		margin: 0 0 30px;
+		line-height: 1.9;
 	}
 	
 	ul{
-		margin: 0 0 20px;
+		margin: 0 0 30px;
 		padding: 0 0 0 30px;
 		
 		li{
-			list-style: disc;
+			margin: 0 0 10px;
+			@include font-size(14);
+			
+			&:before {
+				margin: 0 15px 0 0;
+				@include icon;
+				@include icon-check;
+				color: #0FBA8F;
+				@include font-size(13);
+			}
 		}
 	}
 	
@@ -63,61 +65,96 @@ $iconColor: $mfc; /* アイコンカラー */
 		}
 	}
 	
-	.box{
-		margin: 0 0 20px;
-		padding: 15px 15px 5px;
-		border: 2px solid #EEE;
-		background: #FEFEFE;
-		@include border-radius(5px);
-		
-		p{
-			margin: 0 0 10px;
-			font-size: 14px;
-		}
-		
-		&.red{
-			background: #FFFDFD;
-			border: 2px solid #FFECEC;
-		}
+	strong {
+		background: linear-gradient(transparent 60%, #ffff66 60%);
 	}
 	
-	p.box{
-		padding: 15px;
+	dl {
+		margin: 30px 0;
+		padding: 26px 20px 1px;
+    	padding-bottom: 0;
+		line-height: 1.9;
+		border: 2px solid #0FBA8F;
+		border-radius: 5px;
+		
+		dt {
+			display: inline-block;
+			background: #fff;
+			padding: 0 10px;
+			font-weight: bold;
+			position: relative;
+			top: -40px;
+			color: #0FBA8F;
+			
+			&:before {
+				margin: 0 10px 0 0;
+				@include icon;
+				@include icon-pen;
+				@include font-size(20);
+				color: #0FBA8F;
+			}
+		}
+		
+		dd {
+			position: relative;
+			top: -25px;
+			margin-bottom: -30px;
+			padding-left: 10px;
+			@include font-size(14);
+			
+			p {
+				margin: 0 0 20px;
+				line-height: 1.9;
+			}
+		}
+		
+		&.dlCaution {
+			border-color: #CE1616;
+			
+			dt {
+				color: #CE1616;
+				&:before {
+					@include icon-caution;
+					color: #CE1616;
+				}
+			}
+		}
 	}
 	
 	blockquote{
 		position: relative;
 		margin: 0 0 20px;
-		padding: 30px 20px 20px;
-		border: none;
-		border: 2px solid #EEE;
-		background: #FEFEFE;
-		@include border-radius(5px);
+		padding: 30px 40px;
+		border-radius: 5px;
 		
-		&:before,
-		&:after{
-			@include icon-font;
+		&:before{
+			@include icon;
+			@include icon-quotation;
 			position: absolute;
 			color: #DDD;
-		}
-		&:before{
-			top: 10px;
-			left: 10px;
-			content: "\e977";
-		}
-		&:after{
-			bottom: 10px;
-			right: 10px;
-			content: "\e978";
-		}
-		
-		h3:first-child{
-			margin-top: 0;
+			top: 0;
+			left: 20px;
+			@include font-size(22);
 		}
 		
 		p{
 			margin: 0 0 10px;
-			font-size: 14px;
+			@include font-size(14);
+		}
+		
+		small {
+			display: block;
+			text-align: right;
+			@include font-size(11);
+			color: #999999;
+			
+			a {
+				color: #999999;
+			}
+			
+			&:before {
+				content: "引用元 - ";
+			}
 		}
 	}
 	
@@ -128,7 +165,7 @@ $iconColor: $mfc; /* アイコンカラー */
 		vertical-align: middle;
 			
 		&:before{
-			@include icon-font;
+			@include icon;
 			position: absolute;
 			top: 50%;
 			left: 0;

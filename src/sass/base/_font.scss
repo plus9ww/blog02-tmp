@@ -1,12 +1,9 @@
 @charset "utf-8";
 /* Sass Document */
 
-/*@import url(//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic);
-@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,500);*/
-
 @mixin fontStyle{
 	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
-	/* font-family:Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif; */
+	/*font-family:Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;*/ 
 }
 
 /*
@@ -18,9 +15,7 @@
 @mixin ryu-r{
 	font-family: "リュウミン R-KL", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
 	@include rotate(0.001deg);
-}
-
-@mixin font-tel{ font-family: 'Amiri', serif; }*/
+}*/
 
 a:link    { color:$mlc; text-decoration: none; }
 a:visited { color:$mlc; text-decoration: none; }

@@ -46,19 +46,29 @@
 .icon-arrow-l:before { content: "\EA02" }
 .icon-arrow-r:before { content: "\EA03" }
 .icon-arrow-u:before { content: "\EA04" }
-.icon-home:before { content: "\EA05" }
-.icon-insta:before { content: "\EA06" }
-.icon-kagetsu:before { content: "\EA07" }
-.icon-tel:before { content: "\EA08" }
-.icon-zoom:before { content: "\EA09" }
+.icon-caution:before { content: "\EA05" }
+.icon-check:before { content: "\EA06" }
+.icon-eye:before { content: "\EA07" }
+.icon-home:before { content: "\EA08" }
+.icon-insta:before { content: "\EA09" }
+.icon-kagetsu:before { content: "\EA0A" }
+.icon-pen:before { content: "\EA0B" }
+.icon-quotation:before { content: "\EA0C" }
+.icon-tel:before { content: "\EA0D" }
+.icon-zoom:before { content: "\EA0E" }
 
 
 @mixin icon-arrow-d { content: "\EA01" }
 @mixin icon-arrow-l { content: "\EA02" }
 @mixin icon-arrow-r { content: "\EA03" }
 @mixin icon-arrow-u { content: "\EA04" }
-@mixin icon-home { content: "\EA05" }
-@mixin icon-insta { content: "\EA06" }
-@mixin icon-kagetsu { content: "\EA07" }
-@mixin icon-tel { content: "\EA08" }
-@mixin icon-zoom { content: "\EA09" }
+@mixin icon-caution { content: "\EA05" }
+@mixin icon-check { content: "\EA06" }
+@mixin icon-eye { content: "\EA07" }
+@mixin icon-home { content: "\EA08" }
+@mixin icon-insta { content: "\EA09" }
+@mixin icon-kagetsu { content: "\EA0A" }
+@mixin icon-pen { content: "\EA0B" }
+@mixin icon-quotation { content: "\EA0C" }
+@mixin icon-tel { content: "\EA0D" }
+@mixin icon-zoom { content: "\EA0E" }
