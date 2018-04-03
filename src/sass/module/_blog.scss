@@ -5,6 +5,9 @@
 ** blogBox
 */
 .blogBox{
+	@media screen and (max-width: 768px) {
+		padding: 0 15px;
+	}
 	
 	> h2{
 		margin: 0 0 35px;
@@ -14,6 +17,11 @@
 		color: #333;
 		@include font-size(24);
 		line-height: 1.4;
+		
+		@media screen and (max-width: 768px) {
+			margin: 0 -15px 20px;
+			@include font-size(28);
+		}
 	}
 	
 	> h3{
@@ -23,6 +31,12 @@
 		color: #333;
 		@include font-size(22);
 		line-height: 1.4;
+		
+		@media screen and (max-width: 768px) {
+			margin: 0 0 15px;
+			padding: 0 0 0 10px;
+			@include font-size(30);
+		}
 	}
 	
 	> h4{
@@ -31,37 +45,63 @@
 		@include font-size(16);
 		line-height: 1.4;
 		background: #EEE;
+		
+		@media screen and (max-width: 768px) {
+			@include font-size(20);
+		}
 	}
 	
 	> p {
 		margin: 0 0 30px;
+		@include font-size(16);
 		line-height: 1.9;
+		
+		@media screen and (max-width: 768px) {
+			@include font-size(20);
+		}
 	}
 	
 	ul{
 		margin: 0 0 30px;
-		padding: 0 0 0 30px;
+		padding: 0 0 0 60px;
 		
 		li{
 			margin: 0 0 10px;
 			@include font-size(14);
 			
 			&:before {
-				margin: 0 15px 0 0;
+				margin: 0 15px 0 -30px;
 				@include icon;
 				@include icon-check;
 				color: #0FBA8F;
+				
 				@include font-size(13);
+			}
+		}
+		
+		@media screen and (max-width: 768px) {
+			padding: 0 0 0 30px;
+			
+			li{
+				&:before {
+					margin: 0 10px 0 -24px;
+				}
 			}
 		}
 	}
 	
 	ol{
-		margin: 0 0 20px;
-		padding: 0 0 0 32px;
+		margin: 0 0 30px;
+		padding: 0 0 0 50px;
 		
 		li{
+			margin: 0 0 10px;
 			list-style: decimal;
+			@include font-size(14);
+		}
+		
+		@media screen and (max-width: 768px) {
+			padding: 0 0 0 26px;
 		}
 	}
 	
@@ -119,6 +159,11 @@
 				}
 			}
 		}
+		
+		@media screen and (max-width: 768px) {
+			padding: 26px 8px 1px;
+			border: 1px solid #0FBA8F;
+		}
 	}
 	
 	blockquote{
@@ -154,6 +199,24 @@
 			
 			&:before {
 				content: "引用元 - ";
+			}
+		}
+		
+		@media screen and (max-width: 768px) {
+			padding: 26px 20px;
+			
+			&:before{
+				left: 10px;
+				@include font-size(30);
+			}
+			
+			small {
+				text-align: left;
+				font-size: 10px;
+				
+				&:before {
+					display: block;
+				}
 			}
 		}
 	}

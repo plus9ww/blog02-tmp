@@ -20,3 +20,16 @@ header {
 		color: #fff;
 	}
 }
+
+@media screen and (max-width: 768px) {
+header {
+	margin: 0;
+	padding: 0 15px;
+}
+
+.header {
+	margin: 0 auto;
+	padding: 10px 0;
+	width: auto;
+}
+}

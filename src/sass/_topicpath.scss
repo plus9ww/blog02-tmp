@@ -31,5 +31,32 @@
 }
 
 @media screen and (max-width: 768px) {
-
+.topicpath {
+	margin: 0 0 15px;
+	padding: 0 5px;
+	overflow-x: scroll;
+  	white-space: nowrap;
+	border-bottom: 1px solid #EEEEEE;
+	
+	ul {
+		padding: 10px 0;
+		width: auto;
+		text-align: left;
+		
+		li{
+			.icon-home {
+				margin: 0 5px 0 0;
+			}
+			
+			a {
+				font-weight: bold;
+				text-decoration: underline;
+			}
+		}
+	}
+	
+	.icon-arrow-r {
+		margin: 0 5px;
+	}
+}
 }
