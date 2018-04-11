@@ -33,7 +33,7 @@ a:hover   { color: $mhc; text-decoration: none; }
 .fGray			{ color: #BBB; }
 
 /* 文字可変指定 */
-@mixin font-size($maxfontsize, $maxviewportsize: $max_viewport, $minviewportsize: $min_viewport ){
+@mixin font-sizexx($maxfontsize, $maxviewportsize: $max_viewport, $minviewportsize: $min_viewport ){
 	
 	$minfontsize : 12;
 	
@@ -53,6 +53,28 @@ a:hover   { color: $mhc; text-decoration: none; }
 
 	@media (min-width: $maxviewportsize * 1px) {
 		font-size: $maxfontsize *1px;
+	}
+}
+/* /文字可変指定 */
+
+/* 文字可変指定 */
+@mixin font-size($minfontsize, $maxviewportsize:$max_viewport, $minviewportsize:$min_viewport){
+	
+	@media (max-width: $minviewportsize * 1px) {
+		font-size: ($minfontsize / 16) * 1rem;
+	}
+	
+	$maxfontsize : $minfontsize * 2;
+	
+	$XX: $minviewportsize / 100 * 1px;
+	$YY: 100 * ($maxfontsize - $minfontsize) / ($maxviewportsize - $minviewportsize);
+	$ZZ: ($minfontsize / 16) * 1rem;
+	font-size: calc(#{$ZZ} + ((1vw - #{$XX}) * #{$YY}));
+	/*font-size: calc((( #{$minfontsize} / 16) * 1rem) + ((1vw - ( #{$minviewportsize} / 100 * 1px)) * (100 * ( #{$maxfontsize} -  #{$minfontsize} ) / ( #{$maxviewportsize} -  #{$minviewportsize} ))));
+	Where: * 1.8182 = 100 * font_Size_Difference / viewport_Width_Difference */
+
+	@media (min-width: $maxviewportsize * 1px) {
+		font-size: ($maxfontsize / 16) * 1rem;
 	}
 }
 /* /文字可変指定 */
