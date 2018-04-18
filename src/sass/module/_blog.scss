@@ -5,12 +5,14 @@
 ** blogBox
 */
 .blogBox{
-	@media screen and (max-width: 768px) {
-		padding: 0 15px;
+	padding: 0 15px;
+	
+	@include mq(md){
+		padding: 0;
 	}
 	
 	> h2{
-		margin: 0 0 35px;
+		margin: 0 -15px 20px;
 		padding: 15px 5px;
 		border-top: 3px solid #0FBA8F;
 		border-bottom: 1px solid #DDD;
@@ -18,24 +20,22 @@
 		@include font-size(24);
 		line-height: 1.4;
 		
-		@media screen and (max-width: 768px) {
-			margin: 0 -15px 20px;
-			@include font-size(28);
+		@include mq(md){
+			margin: 0 0 35px;
 		}
 	}
 	
 	> h3{
-		margin: 0 0 25px;
-		padding: 5px 0 5px 20px;
+		margin: 0 0 15px;
+		padding: 0 0 0 10px;
 		border-left: 3px solid #0FBA8F;
 		color: #333;
 		@include font-size(22);
 		line-height: 1.4;
 		
-		@media screen and (max-width: 768px) {
-			margin: 0 0 15px;
-			padding: 0 0 0 10px;
-			@include font-size(30);
+		@include mq(md){
+			margin: 0 0 25px;
+			padding: 5px 0 5px 20px;
 		}
 	}
 	
@@ -45,46 +45,35 @@
 		@include font-size(16);
 		line-height: 1.4;
 		background: #EEE;
-		
-		@media screen and (max-width: 768px) {
-			@include font-size(20);
-		}
 	}
 	
 	> p {
 		margin: 0 0 30px;
 		@include font-size(16);
 		line-height: 1.9;
-		
-		@media screen and (max-width: 768px) {
-			@include font-size(20);
-		}
 	}
 	
 	ul{
 		margin: 0 0 30px;
-		padding: 0 0 0 60px;
+		padding: 0 0 0 30px;
+		
+		@include mq(md){
+			padding: 0 0 0 60px;
+		}
 		
 		li{
 			margin: 0 0 10px;
 			@include font-size(14);
 			
 			&:before {
-				margin: 0 15px 0 -30px;
+				margin: 0 10px 0 -24px;
 				@include icon;
 				@include icon-check;
 				color: #0FBA8F;
-				
 				@include font-size(13);
-			}
-		}
-		
-		@media screen and (max-width: 768px) {
-			padding: 0 0 0 30px;
-			
-			li{
-				&:before {
-					margin: 0 10px 0 -24px;
+				
+				@include mq(md){
+					margin: 0 15px 0 -30px;
 				}
 			}
 		}
@@ -92,16 +81,16 @@
 	
 	ol{
 		margin: 0 0 30px;
-		padding: 0 0 0 50px;
+		padding: 0 0 0 26px;
+		
+		@include mq(md){
+			padding: 0 0 0 50px;
+		}
 		
 		li{
 			margin: 0 0 10px;
 			list-style: decimal;
 			@include font-size(14);
-		}
-		
-		@media screen and (max-width: 768px) {
-			padding: 0 0 0 26px;
 		}
 	}
 	
@@ -111,11 +100,16 @@
 	
 	dl {
 		margin: 30px 0;
-		padding: 26px 20px 1px;
+		padding: 26px 8px 1px;
     	padding-bottom: 0;
 		line-height: 1.9;
-		border: 2px solid #0FBA8F;
+		border: 1px solid #0FBA8F;
 		border-radius: 5px;
+		
+		@include mq(md){
+			padding: 26px 20px 1px;
+			border: 2px solid #0FBA8F;
+		}
 		
 		dt {
 			display: inline-block;
@@ -159,18 +153,17 @@
 				}
 			}
 		}
-		
-		@media screen and (max-width: 768px) {
-			padding: 26px 8px 1px;
-			border: 1px solid #0FBA8F;
-		}
 	}
 	
 	blockquote{
 		position: relative;
 		margin: 0 0 20px;
-		padding: 30px 40px;
+		padding: 26px 20px;
 		border-radius: 5px;
+		
+		@include mq(md){
+			padding: 30px 40px;
+		}
 		
 		&:before{
 			@include icon;
@@ -178,8 +171,12 @@
 			position: absolute;
 			color: #DDD;
 			top: 0;
-			left: 20px;
+			left: 10px;
 			@include font-size(22);
+			
+			@include mq(md){
+				left: 20px;
+			}
 		}
 		
 		p{
@@ -189,33 +186,23 @@
 		
 		small {
 			display: block;
-			text-align: right;
-			@include font-size(11);
+			@include font-size(10);
 			color: #999999;
+			
+			@include mq(md){
+				text-align: right;
+			}
 			
 			a {
 				color: #999999;
 			}
 			
 			&:before {
+				display: block;
 				content: "引用元 - ";
-			}
-		}
-		
-		@media screen and (max-width: 768px) {
-			padding: 26px 20px;
-			
-			&:before{
-				left: 10px;
-				@include font-size(30);
-			}
-			
-			small {
-				text-align: left;
-				font-size: 10px;
 				
-				&:before {
-					display: block;
+				@include mq(md){
+					display: inline;
 				}
 			}
 		}
@@ -243,41 +230,5 @@
 		&:hover {
 			text-decoration: none;
 		}
-	}
-	
-	table{
-		margin: 0 0 20px;
-		width: 100%;
-		border: 1px solid #EEEEEE;
-		background: #FFFFFF;
-		border-collapse: collapse;
-		
-		th{
-			padding: 1em;
-			background: #EEEEEE;
-			border-bottom: 1px solid #FFFFFF;
-			font-weight: bold;
-			text-align: left;
-			line-height: 1.75;
-			vertical-align: middle;
-		}
-		
-		td{
-			padding: 1em;
-			border: 1px solid #EEEEEE;
-			font-size: 14px;
-			line-height: 1.75;
-			vertical-align: middle;
-		}
-		
-		.w10{ width: 10%; }
-		.w20{ width: 20%; }
-		.w30{ width: 30%; }
-		.w40{ width: 40%; }
-		.w50{ width: 50%; }
-		.w60{ width: 60%; }
-		.w70{ width: 70%; }
-		.w80{ width: 80%; }
-		.w90{ width: 90%; }
 	}
 }

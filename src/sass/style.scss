@@ -25,8 +25,8 @@ $mhc: #D90000; /* メインホバーカラー */
 /**************************
 ** コンテンツ幅
 */
-$max_viewport : 1200;
 $min_viewport : 320;
+$max_viewport : 1200;
 
 @import "compass";
 
@@ -55,14 +55,20 @@ body {
 */
 
 .titleBox {
-	margin: 0 auto 40px;
-	padding: 0 0 30px;
-	width: 980px;
-	border-bottom: 2px solid #EEEEEE;
+	margin: 0 auto;
+	padding: 0 15px 15px;
+	width: auto;
+	max-width: 980px;
+	
+	@include mq(md){
+		margin-bottom: 40px;
+		padding: 0 0 30px;
+		border-bottom: 2px solid #EEEEEE;
+	}
 	
 	&__cat {
 		display: inline-block;
-		margin: 0 0 15px;
+		margin: 0 0 5px;
 		padding: 4px 8px;
 		line-height: 1;
 		vertical-align: middle;
@@ -72,56 +78,36 @@ body {
 		
 		&--pink { background: #FF0099; }
 		&--green { background: #60A13B; }
-	}
-	
-	&__h1 {
-		margin: 0 0 30px;
-	}
-	
-	&__infoBox {
-		@include display-flex();
-		@include align-items(center); 
-		@include justify-content(space-between);
-	}
-	
-	&__description {
-		width: 700px;
-	}
-	
-	&__subBox {
-		width: 260px;
-		text-align: right;
-	}
-	
-	&__icon-eye {
-		margin: 0 5px 0 0;
-	}
-}
-
-@media screen and (max-width: 768px) {
-.titleBox {
-	margin: 0 auto;
-	padding: 0 15px 15px;
-	width: auto;
-	max-width: 980px;
-	border-bottom: none;
-	
-	&__cat {
-		display: inline-block;
-		margin: 0 0 5px;
+		
+		@include mq(md){
+			margin-bottom: 15px;
+		}
 	}
 	
 	&__h1 {
 		margin: 0 0 5px;
+		
+		@include mq(md){
+			margin-bottom: 30px;
+		}
 	}
 	
 	&__infoBox {
 		display: block;
+		
+		@include mq(md){
+			@include display-flex();
+			@include align-items(center); 
+			@include justify-content(space-between);
+		}
 	}
 	
 	&__description {
 		margin: 0 0 15px;
-		width: auto;
+		
+		@include mq(md){
+			width: 700px;
+		}
 	}
 	
 	&__subBox {
@@ -129,6 +115,11 @@ body {
 		@include display-flex();
 		@include justify-content(space-between);
 		text-align: left;
+		
+		@include mq(md){
+			width: 260px;
+			text-align: right;
+		}
 	}
 	
 	&__icon-eye {
@@ -139,29 +130,11 @@ body {
 		text-align: right;
 	}
 }
-}
 
 /**************************
 ** contents
 */
 
-.contents {
-	margin: 0 auto;
-	padding: 0 0 30px;
-	width: 980px;
-	
-	.contents__left {
-		float: left;
-		width: 640px;
-	}
-	
-	.contents__right {
-		float: right;
-		width: 300px;
-	}
-}
-
-@media screen and (max-width: 768px) {
 .contents {
 	padding: 0 0 15px;
 	width: auto;
@@ -169,9 +142,23 @@ body {
 	.contents__left,
 	.contents__right{
 		float: none;
-		width: auto;
+		max-width: 980px;
 	}
-}
+	
+	@include mq(md){
+		margin: 0 auto;
+		padding: 0 0 30px;
+		
+		.contents__left {
+			float: left;
+			width: 640px;
+		}
+
+		.contents__right {
+			float: right;
+			width: 300px;
+		}
+	}
 }
 
 /**************************
@@ -179,13 +166,11 @@ body {
 */
 
 .sideCnt {
-	width: 300px;
-}
-
-@media screen and (max-width: 768px) {
-.sideCnt {
 	width: auto;
-}
+	
+	@include mq(md){
+		width: 300px;
+	}
 }
 
 /**************************
@@ -215,58 +200,23 @@ body {
 ** toc
 */
 .toc {
-	margin: 0 0 40px;
-	border: 2px solid #eee;
-	border-radius: 5px;
-	
-	&__title {
-		margin: 0 0 10px;
-		padding: 10px 15px;
-		background: #EEE;
-	}
-	
-	ol{
-		margin: 0;
-		padding: 10px 50px;
-		list-style: decimal;
-		
-		li{
-			margin: 0 0 .5em;
-			padding: 0;
-			@include font-size(14);
-			
-			ol,ul{
-				margin: 0;
-				padding: 0;
-				list-style: none;
-				
-				li {
-					margin: 0;
-					@include font-size(12);
-					
-					&:before {
-						content: "－";
-						display: inline-block;
-						margin: 0 8px 0 0;
-						color: #999;
-					}
-				}
-			}
-		}
-	}
-}
-
-@media screen and (max-width: 768px) {
-.toc {
 	margin: 0 0 20px;
-	border: none;
-	border-radius: 0;
 	background: #F6F6F6;
+	
+	@include mq(md){
+		margin: 0 0 40px;
+		border: 2px solid #eee;
+		border-radius: 5px;
+	}
 	
 	&__title {
 		margin: 0 0 10px;
 		padding: 5px 15px;
 		background: #EEE;
+		
+		@include mq(md){
+			padding: 10px 15px;
+		}
 	}
 	
 	ol{
@@ -274,6 +224,10 @@ body {
 		padding: 5px 10px 5px 30px;
 		list-style: decimal;
 		
+		@include mq(md){
+			padding: 10px 50px;
+		}
+		
 		li{
 			margin: 0 0 .5em;
 			padding: 0;
@@ -299,13 +253,16 @@ body {
 		}
 	}
 }
-}
 
 /**************************
 ** itemList
 */
 .itemList {
-	margin: 0 0 30px;
+	margin: 0 -15px 30px;
+	
+	@include mq(md){
+		margin: 0 0 30px;
+	}
 	
 	&__title {
 		margin: 0 0 10px;
@@ -314,24 +271,40 @@ body {
 	}
 	
 	&__box {
-		@include display-flex();
-		@include justify-content(space-between);
+		display: block;
+		
+		@include mq(md){
+			@include display-flex();
+			@include justify-content(space-between);
+		}
 	}
 	
 	&__main {
-		margin: 0 2% 0 0;
-		width: 32%;
-		border: 1px solid #DDD;
+		margin: 0 0 2%;
+		width: auto;
 		border-radius: 5px;
 		line-height: 1.4;
+		
+		@include mq(md){
+			margin: 0 2% 0 0;
+			width: 32%;
+			border: 1px solid #DDD;
+		}
 		
 		&:last-of-type {
 			margin-left: 0;
 		}
 		
 		a {
-			display: block;
-			padding: 15px;
+			display: block;	
+			padding: 15px 15px 15px 100px;
+			min-height: 100px;	
+			position: relative;
+			background: #F6F6F6;
+			
+			@include mq(md){
+				padding: 15px;
+			}
 			
 			&:hover {
 				background: #eee;
@@ -340,14 +313,28 @@ body {
 	}
 	
 	&__img {
-		margin: 0 0 15px;
+		position: absolute;
+		left: 15px;
+		top: 15px;
+		width: 70px;
 		text-align: center;
+		
+		@include mq(md){
+			position: static;
+			margin: 0 0 15px;
+			width: auto;
+		}
 	}
 	
 	&__maker {
+		margin: 0 0 5px;
 		font-weight: bold;
 		color: #333;
 		@include font-size(10);
+		
+		@include mq(md){
+			margin: 0;
+		}
 	}
 	
 	&__name {
@@ -371,43 +358,4 @@ body {
 		color: #999;
 		@include font-size(10);
 	}
-}
-
-@media screen and (max-width: 768px) {
-.itemList {
-	margin: 0 -15px 30px;
-	
-	&__box {
-		display: block;
-	}
-	
-	&__main {
-		margin: 0 0 2%;
-		width: auto;
-		border: none;
-		
-		a {
-			position: relative;
-			background: #F6F6F6;
-			padding: 15px 15px 15px 100px;
-			min-height: 100px;
-		}
-	}
-	
-	&__img {
-		position: absolute;
-		left: 15px;
-		top: 15px;
-		width: 70px;
-	}
-	
-	&__maker {
-		margin: 0 0 5px;
-	}
-	
-	&__sub {
-		color: #999;
-		font-size: 10px;
-	}
-}
 }

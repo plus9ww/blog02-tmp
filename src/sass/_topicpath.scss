@@ -6,42 +6,29 @@
 */
 
 .topicpath {
-	ul {
-		display: block;
-		margin: 0 auto;
-		padding: 10px 0;
-		width: 980px;
-		text-align: right;
-		
-		li{
-			.icon-home {
-				margin: 0 5px 0 0;
-			}
-			
-			a {
-				font-weight: bold;
-				text-decoration: underline;
-			}
-		}
-	}
-	
-	.icon-arrow-r {
-		margin: 0 5px;
-	}
-}
-
-@media screen and (max-width: 768px) {
-.topicpath {
 	margin: 0 0 15px;
 	padding: 0 5px;
 	overflow-x: scroll;
   	white-space: nowrap;
 	border-bottom: 1px solid #EEEEEE;
 	
+	@include mq(md){
+		margin: 0;
+		padding: 0;
+		overflow-x: auto;
+		white-space: normal;
+		border-bottom: none;
+	}
+	
 	ul {
+		display: block;
+		margin: 0 auto;
 		padding: 10px 0;
-		width: auto;
-		text-align: left;
+		max-width: 980px;
+		
+		@include mq(md){
+			text-align: right;
+		}
 		
 		li{
 			.icon-home {
@@ -58,5 +45,4 @@
 	.icon-arrow-r {
 		margin: 0 5px;
 	}
-}
 }
