@@ -58,13 +58,15 @@ a:hover   { color: $mhc; text-decoration: none; }
 /* /文字可変指定 */
 
 /* 文字可変指定 */
-@mixin font-size($minfontsize, $maxviewportsize:$max_viewport, $minviewportsize:$min_viewport){
+@mixin font-size($minfontsize, $maxfontsize:0, $maxviewportsize:$max_viewport, $minviewportsize:$min_viewport){
 	
 	@media (max-width: $minviewportsize * 1px) {
 		font-size: ($minfontsize / 16) * 1rem;
 	}
 	
-	$maxfontsize : $minfontsize * 2;
+	@if $maxfontsize == 0 {
+		$maxfontsize : $minfontsize * 1.5;
+	}
 	
 	$XX: $minviewportsize / 100 * 1px;
 	$YY: 100 * ($maxfontsize - $minfontsize) / ($maxviewportsize - $minviewportsize);
@@ -83,7 +85,7 @@ body {
 	@include fontStyle;
 	line-height: $mlh;
 	letter-spacing: $mls;
-	@include font-size(16);
+	@include font-size(13);
 	color: $mfc;
 }
 
@@ -101,6 +103,7 @@ body {
 .f12 { @include font-size(12); }
 .f11 { @include font-size(11); }
 .f10 { @include font-size(10); }
+.f9  { @include font-size(9); }
 
 .h200 {line-height: 2.0}
 .h180 {line-height: 1.8}

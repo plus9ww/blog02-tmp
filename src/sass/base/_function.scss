@@ -14,14 +14,6 @@
 	@include box-shadow( 0px -7px 0px $size rgba(0,0,0,$a) inset);
 }
 
-@mixin writing-mode($direction){
-	-ms-writing-mode: tb- + $direction;            		/* IE用　*/
-	-webkit-writing-mode: vertical- + $direction;  		/* chrome用　*/
-	-moz-writing-mode: vertical- + $direction;       	/* Firefox用　*/
-	-o-writing-mode: vertical- + $direction;       		/* opera用　*/
-	writing-mode: vertical- + $direction;				/* その他 */
-}
-
 @mixin doc{
 	/*フレキシブルボックス 中央配置*/
 	@include display-flex();
@@ -51,29 +43,62 @@
 /*フレキシブルボックス 中央配置*/
 // min-width
 $breakpoint-up: (
-  'sm': 'screen and (min-width: 400px)',
-  'md': 'screen and (min-width: 768px)',
-  'lg': 'screen and (min-width: 1000px)',
-  'xl': 'screen and (min-width: 1200px)',
+	'sm': 'screen and (min-width: 400px)',
+	'md': 'screen and (min-width: 768px)',
+	'lg': 'screen and (min-width: 1000px)',
+	'xl': 'screen and (min-width: 1200px)',
 ) !default;
 
 // max-width
 $breakpoint-down: (
-  'sm': 'screen and (max-width: 399px)',
-  'md': 'screen and (max-width: 767px)',
-  'lg': 'screen and (max-width: 999px)',
-  'xl': 'screen and (max-width: 1199px)',
+	'sm': 'screen and (max-width: 399px)',
+	'md': 'screen and (max-width: 767px)',
+	'lg': 'screen and (max-width: 999px)',
+	'xl': 'screen and (max-width: 1199px)',
 ) !default;
 
 // @mixinの定義
 @mixin mq($breakpoint: md) {
-  @media #{map-get($breakpoint-up, $breakpoint)} {
-    @content;
-  }
+	@media #{map-get($breakpoint-up, $breakpoint)} {
+		@content;
+	}
 }
 
 @mixin mq-max($breakpoint: md) {
-  @media #{map-get($breakpoint-down, $breakpoint)} {
-    @content;
-  }
+	@media #{map-get($breakpoint-down, $breakpoint)} {
+		@content;
+	}
+}
+
+/***************************************************
+* sass z-indexの管理
+* 要素を並べた順番でz-indexの階層を管理
+
+.header {
+	z-index: z(header);
+}
+.modal {
+	z-index: z(modal);
+}
+***************************************************/
+
+$z-map: (
+	header, nav, modal
+);
+
+@function z($name) {
+	@return index($z-map, $name);
+}
+
+/***************************************************
+* css、imgなど後ろに乱数をつけキャッシュ読み込みを避ける方法
+* - キャッシュバスター
+
+.kv {
+	background-image: url(cache-buster("/assets/images/kv.png"));
+}
+***************************************************/
+
+@function cache-buster($path) {
+	@return #{$path + "?" + unique_id()};
 }
