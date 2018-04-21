@@ -1,54 +1,36 @@
-<?
-/**
- * @package WordPress
- * @subpackage Merci_Tmp
- * @since Merci　Tmp 1.0
- */
- ?>
- 
-<?
-global $thistitle,$thisdescription;
-if ( in_category('4') && in_category('5') ) {
-	$tmpText = "";
-	$thistitle = '｜大阪の介護付老人ホーム「メルシー」';
-} elseif ( in_category('6') || in_category('4') ) {
-	$tmpText = "midori";
-	$thistitle = '｜大阪府豊中市の介護付老人ホーム「メルシー緑が丘」';
-} else if ( in_category('7') || in_category('5') ) {
-	$tmpText = "masumi";
-	$thistitle = '｜大阪府池田市の介護付老人ホーム「メルシーますみ」';
-} else {
-	$tmpText = "";
-	$thistitle = '｜大阪の介護付老人ホーム「メルシー」';
-}
-?>
- 
- 
-<? get_header($tmpText); ?>
-
-<? get_template_part( 'topicpath'); ?>
-
-
-<section class="page__contents page__contents--2column">
-        <section class="main">
-
-
-    <!-- main -->
-    <div class="main_box">
-		<? while ( have_posts() ) : the_post(); ?>
-            <article class="blogBox1">
-                <h1 class="f20 marginB20"><? the_title(); ?></h1>
-                <p class="f14h160 marginB20 day"><? the_time('Y/m/d'); ?></p>
-                <div class="f16h160 text"><? the_content(); ?></div>
-            </article>
-        <? endwhile; ?>
-    </div>
-    <!-- /main -->
-
+<? get_header(); ?>
+<? get_template_part( 'topicpath', 'common' ); ?>
+<?php while ( have_posts() ) : the_post(); ?>
+<section class="wrapper category-blog">
+	<section class="titleBox">
+		<? $cat = get_the_category(); ?>
+		<p class="titleBox__cat titleBox__cat--pink f11"><?= get_cat_name($cat[0]->term_id); ?></p>
+		<h1 class="titleBox__h1 f18 h160"><? the_title(); ?></h1>
+		<div class="titleBox__infoBox">
+			<p class="titleBox__description f13 h175"><?= get_post_meta($post->ID, _aioseop_description, true); ?></p>
+			<div class="titleBox__subBox">
+				<p class="titleBox__view f12"><span class="icon-eye titleBox__icon-eye f13"></span><?= number_format(post_custom('views')) ?></p>
+				<p class="titleBox__date f12">最終更新 - <time class="updated" datetime="<? the_modified_date('Y/m/d') ?>"><? the_modified_date('Y/m/d') ?></time></p>
+			</div>
+		</div>
 	</section>
-        
-	<? get_sidebar($tmpText); ?>
-    
+	<section class="contents clearfix">
+		<section class="contents__left" id="js__blogMain">
+			<?
+			global $page;
+			$pageMap = my_custom_toc();
+			?>
+			<section class="toc">
+				<p class="toc__title f11"><strong>この記事の目次</strong></p>
+				<?= $pageMap; ?>
+			</section>
+			<section class="blogBox">
+				<?php the_content(); ?>
+            	<?php wp_link_pages(); ?>
+			</section>
+		</section>
+		<? get_template_part( 'sidebar'); ?>
+	</section>
 </section>
-
-<? get_footer($tmpText); ?>
+<?php endwhile; ?>
+<?php get_template_part( 'footer'); ?>

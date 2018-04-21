@@ -65,7 +65,7 @@ a:hover   { color: $mhc; text-decoration: none; }
 	}
 	
 	@if $maxfontsize == 0 {
-		$maxfontsize : $minfontsize * 1.5;
+		$maxfontsize : $minfontsize * 1.2;
 	}
 	
 	$XX: $minviewportsize / 100 * 1px;

@@ -20,8 +20,13 @@ header {
 	margin: 0 auto;
 	padding: 10px 0;
 	max-width: 980px;
+	text-align: center;
 	
 	&__h1 {
 		color: #fff;
+		
+		a {
+			color: #fff;
+		}
 	}
 }

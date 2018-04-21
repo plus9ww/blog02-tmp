@@ -14,21 +14,11 @@ remove_action('wp_head','wp_oembed_add_host_js');
 add_action( 'wp_print_styles', 'my_deregister_styles', 100 );
 function my_deregister_styles() {
     wp_deregister_style( 'wp-pagenavi' );
-	if ( ! is_page( 'inquiry' ) && ! is_page( 'en-booking' ) && ! is_page( 'tw-booking' ) && ! is_page( 'zh-booking' )) {
+	wp_deregister_style( 'duplicate-post' );
+	if ( ! is_page( 'inquiry' ) ) {
 		wp_deregister_script('jquery');
 	}
-	if(!is_category('column') && !in_category('column') && !is_category('information') && !in_category('information')){
-		wp_deregister_style( 'wp-pagenavi-style' );
-	}
-}
-
-/*contact form 7 のファイルを必要な場合のみ読み込む*/ 
-add_action( 'wp_enqueue_scripts', 'deregister_cf7_files' );
-function deregister_cf7_files() {
-	if ( ! is_page( 'inquiry' ) ) {
-		wp_dequeue_style( 'contact-form-7' );
-		wp_dequeue_script( 'contact-form-7' );
-	}
+	wp_deregister_script('toc-front');
 }
 
 add_action( 'widgets_init', 'remove_recent_comments_style' );
@@ -47,10 +37,19 @@ function lm_dequeue_header_styles()
   wp_dequeue_style('yarppWidgetCss');
 }
  
-add_action('get_footer','lm_dequeue_footer_styles');
+add_action('wp_footer','lm_dequeue_footer_styles');
 function lm_dequeue_footer_styles()
 {
   wp_dequeue_style('yarppRelatedCss');
+}
+
+/*contact form 7 のファイルを必要な場合のみ読み込む*/ 
+add_action( 'wp_enqueue_scripts', 'deregister_cf7_files' );
+function deregister_cf7_files() {
+	if ( ! is_page( 'inquiry' ) ) {
+		wp_dequeue_style( 'contact-form-7' );
+		wp_dequeue_script( 'contact-form-7' );
+	}
 }
 
 // 投稿出力のPタグ除去
@@ -65,22 +64,14 @@ remove_filter('term_description','wpautop');
 add_theme_support( 'post-thumbnails' );
 // アイキャッチ画像サイズ
 set_post_thumbnail_size( 106, 80 );
-
 // facebook用
 add_image_size('facebook', 1200, 600, true);
 // 投稿画像サイズS
-add_image_size('blog_s', 90, 90, true);
-// 投稿画像サイズM
-add_image_size('blog_m', 210, 140, true);
+add_image_size('blog_s', 50, 50, true);
 // 投稿画像サイズL
-add_image_size('blog_l', 720, 480, true);
-// お客様の声サムネイル
-add_image_size('voice_l', 402, 567, true);
-
-// ムービー
-add_image_size('movie_s', 88, 50, true);
-add_image_size('movie_m', 220, 124, true);
-add_image_size('movie_l', 320, 180, true);
+add_image_size('blog_l', 106, 80, true);
+// アフィリエイトサーチイメージ
+add_image_size('affsearch_img', 120, 120, true);
 
 /**
  * カスタムメニュー
@@ -107,8 +98,6 @@ function removeId( $id ){
 function replaceImagePath($arg) {
 	$content = str_replace('"images/', '"' . get_bloginfo('template_directory') . '/images/', $arg);
 	$content = str_replace('"common/', '"' . get_bloginfo('template_directory') . '/common/', $content);
-	$content = str_replace('"../images/', '"' . get_bloginfo('template_directory') . '/images/', $content);
-	$content = str_replace('"../common/', '"' . get_bloginfo('template_directory') . '/common/', $content);
 	return $content;
 }  
 add_action('the_content', 'replaceImagePath');
@@ -151,6 +140,30 @@ function kotoriexcerpt($length) {
 }
 
 /**
+ * All in One SEO Pack title・description書き換え
+ * 
+ */
+function my_title($title){
+	global $thistitle;
+	if($thistitle){
+		$title = $thistitle;
+		$thistitle = '';
+	}
+	return $title;
+}
+add_filter('aioseop_title', 'my_title');
+
+function my_description($description){
+	global $thisdescription;
+	if($thisdescription){
+		$description = $thisdescription;
+		$thisdescription = '';
+	}
+	return $description;
+}
+add_filter('aioseop_description', 'my_description');
+
+/**
  * 固定ページの親ページと子ページをスラッグで判定する
  * 
  */
@@ -186,30 +199,125 @@ function my_category_template( $template ) {
 }
 
 /**
- * カテゴリーアーカイブの表示件数指定
+ * 記事分割ページ送り
  * 
+*/
+add_filter('wp_link_pages_args', 'wp_link_pages_args_prevnext_add');
+/**
+ * Add prev and next links to a numbered link list
  */
-function my_pre_get_posts( $query ) {
-    if ( is_admin() || ! $query -> is_main_query() ) return;
-  
-    if ( $query -> is_category('voice') ) {
-		$query -> set( 'posts_per_page', '2' );  //5件を
-		return;
-	}
+function wp_link_pages_args_prevnext_add($args)
+{
+    global $page, $numpages, $more, $pagenow;
+	
+	$args['before'] = '<nav class="pagesprit"><ul><li>';
+	$args['after'] = '</li></ul></nav>';
+	$args['separator'] = '</li><li>';
+	$args['nextpagelink'] = __( '次のページヘ' );
+	$args['previouspagelink'] = __( '前のページヘ' );
+	$args['pagelink'] =  '<span class="num">%</span>';
+	
+    if (!$args['next_or_number'] == 'next_and_number') 
+        return $args; # exit early
+    $args['next_or_number'] = 'number'; # keep numbering for the main part
+    if (!$more)
+        return $args; # exit early
+    if($page-1) # there is a previous page
+        $args['before'] .= _wp_link_page($page-1)
+            . $args['link_before'].'<span class="num">'. $args['previouspagelink'] .'</span>'. $args['link_after'] . '</a>' . $args['separator']
+        ;
+    if ($page<$numpages) # there is a next page
+        $args['after'] = $args['separator'] . _wp_link_page($page+1)
+            . $args['link_before'] .'<span class="num">'. $args['nextpagelink'] .'</span>'. $args['link_after'] . '</a>'
+            . $args['after']
+        ;
+    return $args;
 }
-add_action( 'pre_get_posts', 'my_pre_get_posts' );
-
+ 
  /**
- * phpファイル呼び出しショートコード
+ * 記事内、他記事カード生成
  * 
  */ 
-function my_php_Include($params = array()) {
-	extract(shortcode_atts(array('file' => 'default'), $params));
-	ob_start();
-	include(STYLESHEETPATH . "/$file.php");
-	return ob_get_clean();
+function nlink_scode($atts) {
+  extract(shortcode_atts(array('u'=>""),$atts));
+  if(empty($u)) return;
+  $u = explode(',', $u);
+  $img0 = "";
+  global $ex_nid;
+  $cnt = count($u);
+  switch($cnt) {
+    case 2:
+      $nlink="<div>";
+    case 1:
+      for($i=0; $i<$cnt; $i++) {
+        $url = $u[$i];
+        $id = url_to_postid($u[$i]);
+        $title = esc_html(get_the_title($id));
+		$views = number_format((int)get_post_meta($id, "views", true));
+        $ex_nid.="," . $id;
+ 
+        if(has_post_thumbnail($id)) {
+          $img = wp_get_attachment_image_src(get_post_thumbnail_id($id),'blog_s');
+          $img_tag = '<img src="'.$img[0].'" alt="'.$title.'" width="'.$img[1].'"  height="'.$img[2].'">';
+        } elseif( $img0 != "" ) {
+          $img_tag ='<img src="" alt="no image" class="n-img">';
+        } else { $img_tag = ""; }
+ 
+        $nlink .='<article class="entLinkCard"><a href="'.$url.'" title="'.$title.'">'.$img_tag.'<div class="titleBox"><h4 class="entLinkCard__title">'.$title.'</h4><span class="view"><span class="icon-eye"></span><strong class="cnt">'.$views.'</strong><strong>view</strong></span></div></a></article>';
+      }
+      if($cnt==2) $nlink .="</div>";
+      break;
+    default:
+      $nlink="<ul>";
+      for($i=0; $i<$cnt; $i++) {
+        $url = $u[$i];
+        $id = url_to_postid($u[$i]);
+        $title = esc_html(get_the_title($id));
+        $ex_nid.="," . $id;
+        $nlink .= "<li><a href='" . $url . "'>" . $title ."</a></li>";
+      }
+      $nlink .= "</ul>";
+  }
+  return $nlink;
 }
-add_shortcode('myphp', 'my_php_Include');
+add_shortcode("link", "nlink_scode");
 
 
+function my_custom_toc() {
+	global $post,$page;
+	
+	if ( function_exists( 'toc_get_index' ) ) {
+		
+		if ( preg_match( '$<!--nextpage-->$', $post->post_content ) ) {
+			$this_pages = explode( '<!--nextpage-->', $post->post_content );
+			$toc = '';
+			foreach ( $this_pages as $key => $val ) {
+				
+				$page_num = $key + 1;
+	
+				$page_content = toc_get_index( $val );
+				
+				if($page_num == $page ){
+					$index = $page_content;
+				}else{
+					if($page_num == 1){
+						$index = preg_replace( "!#!", get_permalink( $post->ID ) . '#', $page_content );
+					}else{
+						$index = preg_replace( "!#!", get_permalink( $post->ID ) . $page_num . '#', $page_content );
+					}
+				}
+	
+				$toc .= $index;
+			}
+		}else{
+			$page_content = toc_get_index( $post->post_content );
+			$toc .= $page_content;
+		}
+		
+		return '<ul class="nextpage-toc-container">' . $toc . '</ul>';
+	} else {
+		
+		return false;
+	}
+}
 ?>

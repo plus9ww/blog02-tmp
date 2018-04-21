@@ -1,12 +1,3 @@
-<?
-/**
- * The template for displaying 404 pages (Not Found).
- *
- * @package WordPress
- * @subpackage Merci_Tmp
- * @since Merci　Tmp 1.0
- */
- ?>
 <? get_header(); ?>
 
 <hr class="line marginB30">
