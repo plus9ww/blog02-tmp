@@ -4,7 +4,8 @@
 /**************************
 ** blogBox
 */
-.blogBox{
+
+.blogBox {
 	padding: 0 15px;
 	
 	@include mq(md){
@@ -230,5 +231,49 @@
 		&:hover {
 			text-decoration: none;
 		}
+	}
+}
+
+.blogBox #toc_container {
+	> h2{
+		margin: 0 -15px 20px;
+		padding: 15px 5px;
+		border-top: 3px solid #0FBA8F;
+		border-bottom: 1px solid #DDD;
+		color: #333;
+		@include font-size(24);
+		line-height: 1.4;
+		
+		@include mq(md){
+			margin: 0 0 35px;
+		}
+	}
+	
+	> h3{
+		margin: 0 0 15px;
+		padding: 0 0 0 10px;
+		border-left: 3px solid #0FBA8F;
+		color: #333;
+		@include font-size(22);
+		line-height: 1.4;
+		
+		@include mq(md){
+			margin: 0 0 25px;
+			padding: 5px 0 5px 20px;
+		}
+	}
+	
+	> h4{
+		margin: 0 0 15px;
+		padding: 10px 15px;
+		@include font-size(16);
+		line-height: 1.4;
+		background: #EEE;
+	}
+	
+	> p {
+		margin: 0 0 30px;
+		@include font-size(13);
+		line-height: 1.9;
 	}
 }

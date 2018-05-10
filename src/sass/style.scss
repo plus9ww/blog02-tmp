@@ -218,7 +218,7 @@ body {
 		}
 	}
 	
-	ol{
+	ul{
 		margin: 0;
 		padding: 5px 10px 5px 30px;
 		list-style: decimal;
@@ -228,6 +228,7 @@ body {
 		}
 		
 		li{
+			display: block;
 			margin: 0 0 .5em;
 			padding: 0;
 			@include font-size(14);
@@ -238,6 +239,7 @@ body {
 				list-style: none;
 				
 				li {
+					display: block;
 					margin: 0;
 					@include font-size(12);
 					
