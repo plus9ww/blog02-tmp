@@ -209,6 +209,29 @@
 		}
 	}
 	
+	.blockquote__small {
+		display: block;
+		@include font-size(10);
+		color: #999999;
+
+		@include mq(md){
+			text-align: right;
+		}
+
+		a {
+			color: #999999;
+		}
+
+		&:before {
+			display: block;
+			content: "引用元 - ";
+
+			@include mq(md){
+				display: inline;
+			}
+		}
+	}
+	
 	.link-Blank{
 		position: relative;
 		display: inline-block;
